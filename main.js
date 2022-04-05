@@ -1,3 +1,6 @@
+rightWristX = 0;
+leftWristX = 0;
+
 function setup(){
     video = createCapture(VIDEO);
     video.size(550, 500);
@@ -10,7 +13,8 @@ function setup(){
 }
 
 function modelLoaded()
-    {console.log('PoseNet Is Initialized!');
+    {
+        console.log('PoseNet Is Initialized!');
 }
 
 function gotPoses(results){
@@ -19,12 +23,14 @@ function gotPoses(results){
         console.log(results);
         leftWristX = results[0].pose.leftWrist.x;
         rightWristX = results[0].pose.rightWrist.x;
-        difference = floor(leftWristX - rightWristX
-        }
-}
+        difference = floor(leftWristX - rightWristX);
+    }}
 
 function draw(){
     background('#969A97');
     fill('#F90093');
+    document.getElementById("font_size").innerHTML = "Font size of the text will be = " + difference + "px";
+    text('Aditi', 50, 100);
+    textSize(difference);
 }
 
